@@ -7,6 +7,8 @@ Minijuego en Unity sobre conspiranoicos y zombies
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  [![License: CC BY 4.0](https://licensebuttons.net/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 PlandemiaZ está publicado bajo una licencia GPLv3. Por favor, lee la licencia incluída en el repositorio. En esta casa respetamos y seguimos los principios del software libre. 
+
+
 	PlandemiaZ is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
