@@ -71,7 +71,7 @@ public class LevelManager : MonoBehaviour
     {
         if (!menuPanel.activeSelf)
         {
-            StartCoroutine(FadePanel(false, menuPanel));
+            StartCoroutine(FadePanel(false, menuPanel, true));
             replayButton.gameObject.SetActive(true);
             resumeButton.gameObject.SetActive(false);
             pauseTitle.gameObject.SetActive(false);
@@ -97,7 +97,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1;
         gamePaused = false;
-        StartCoroutine(FadePanel(true, menuPanel));
+        StartCoroutine(FadePanel(true, menuPanel, false));
     }
 
     public void ResetLevel()
@@ -111,12 +111,12 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void hideUI()
+    public void toogleUI(bool visible, bool freezeTime)
     {
-        StartCoroutine(FadePanel(true, uiPanel));
+        StartCoroutine(FadePanel(!visible, uiPanel, freezeTime));
     }
 
-    IEnumerator FadePanel(bool fadeAway, GameObject panel)
+    IEnumerator FadePanel(bool fadeAway, GameObject panel, bool freezeTime)
     {
 
         CanvasGroup canvas = panel.GetComponent<CanvasGroup>();
@@ -148,7 +148,11 @@ public class LevelManager : MonoBehaviour
                 canvas.alpha = i;
                 yield return null;
             }
-            Time.timeScale = 0;
+            if (freezeTime)
+            {
+                Time.timeScale = 0;
+            }
+            
         }
 
     }

@@ -114,6 +114,14 @@ public class PlayerController : MonoBehaviour
             }
             LevelManager.bleach++;
         }
+
+        if (other.gameObject.tag == "GatesStreet")
+        {
+            direction.z = 0;
+            direction.x = 0;
+            level.toogleUI(false, false);
+            animator.SetTrigger("Gates");
+        }
     }
 
     private void Die()
@@ -125,7 +133,7 @@ public class PlayerController : MonoBehaviour
         {
             spriteAnimator.SetTrigger("Die");
         }
-        level.hideUI();
+        level.toogleUI(false, true);
 
         direction.z = 0;
         direction.x = 0;
@@ -135,5 +143,11 @@ public class PlayerController : MonoBehaviour
     public void OnDyingAnimationEnd()
     {
         LevelManager.gameEnded = true;
+    }
+
+    public void onGatesAnimationEnd()
+    {
+        direction.z = forwardSpeed;
+        level.toogleUI(true, false);
     }
 }
