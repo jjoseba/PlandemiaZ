@@ -9,6 +9,10 @@ public class TileSpawner : MonoBehaviour
     public GameObject startingTile;
     public GameObject[] tilePrefabs;
 
+    public GameObject tileGatesPrefab;
+    public int numTileGatesAppearance = 6;
+
+
     private List<GameObject> spawnedTiles = new List<GameObject>();
     public float tileLength = 20;
     public int visibleTiles = 5;
@@ -36,9 +40,14 @@ public class TileSpawner : MonoBehaviour
 
     void SpawnTile(GameObject tilePrefab)
     {
-        GameObject tile = Instantiate(tilePrefab, transform.forward * currentTile * tileLength, transform.rotation);
+        
+        GameObject tile = Instantiate(
+            // If we are in the Gates tile number, we instantiate it instead
+            (currentTile == numTileGatesAppearance) ? tileGatesPrefab : tilePrefab, 
+            transform.forward * currentTile * tileLength, transform.rotation);
         spawnedTiles.Add(tile);
         currentTile++;
+        LevelManager.level = currentTile;
     }
 
     private void DeleteTile()

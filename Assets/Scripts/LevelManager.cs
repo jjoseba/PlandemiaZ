@@ -10,12 +10,16 @@ public class LevelManager : MonoBehaviour
 
     public static bool gameEnded = false;
     public static int bleach = 0;
+    public static int level = 0;
     
     private bool gamePaused = false;
+    
     public GameObject menuPanel;
     public GameObject uiPanel;
     public TMP_Text bleachCounter;
+    public TMP_Text tileCounter;
 
+    private GameObject robotGates;
     private Button replayButton;
     private Button resumeButton;
     private TMP_Text pauseTitle;
@@ -27,7 +31,9 @@ public class LevelManager : MonoBehaviour
         gameEnded = false;
         gamePaused = false;
         ResumeGame();
-
+        robotGates = GameObject.Find("BillRobot");
+        robotGates.SetActive(false);
+        robotGates.GetComponent<TrackTarget>().fetchPosition();
         replayButton = getComponentByName<Button>("ReplayButton");
         resumeButton = getComponentByName<Button>("ResumeButton");
         pauseTitle = getComponentByName<TMP_Text>("PauseTitle");
@@ -44,6 +50,7 @@ public class LevelManager : MonoBehaviour
         }
 
         bleachCounter.text = "x" + bleach;
+        tileCounter.text = "" + level;
 
         if (gameEnded)
         {
@@ -114,6 +121,11 @@ public class LevelManager : MonoBehaviour
     public void toogleUI(bool visible, bool freezeTime)
     {
         StartCoroutine(FadePanel(!visible, uiPanel, freezeTime));
+    }
+
+    public void awakeGates()
+    {
+        robotGates.SetActive(true);
     }
 
     IEnumerator FadePanel(bool fadeAway, GameObject panel, bool freezeTime)

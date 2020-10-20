@@ -99,11 +99,13 @@ public class PlayerController : MonoBehaviour
             Die();
         }
 
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (!alive) return;
+
         if (other.gameObject.tag == "Bleach")
         {
             //hit.gameObject.SetActive(false);
@@ -118,9 +120,23 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "GatesStreet")
         {
             direction.z = 0;
-            direction.x = 0;
             level.toogleUI(false, false);
             animator.SetTrigger("Gates");
+        }
+
+        if (other.gameObject.tag == "Laser")
+        {
+            Animator spriteAnimator = sprite.GetComponent<Animator>();
+            if (spriteAnimator != null)
+            {
+                spriteAnimator.SetTrigger("LaserHit");
+                LevelManager.bleach -= 5;
+                if (LevelManager.bleach < 0)
+                {
+                    LevelManager.bleach = 0;
+                    Die();
+                }
+            }
         }
     }
 
@@ -149,5 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         direction.z = forwardSpeed;
         level.toogleUI(true, false);
+        level.awakeGates();
+
     }
 }
