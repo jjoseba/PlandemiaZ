@@ -8,6 +8,9 @@ TagManager:
   - Bleach
   - GatesStreet
   - Laser
+  - CenterTarget
+  - LeftTarget
+  - RightTarget
   layers:
   - Default
   - TransparentFX
