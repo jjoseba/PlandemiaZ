@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject sprite;
     public LevelManager level;
+    public GameObject dropBleach;
 
     private float leftPosition;
 
@@ -140,6 +141,8 @@ public class PlayerController : MonoBehaviour
                 {
                     LevelManager.bleach = 0;
                     Die();
+                } else {
+                    DropBleach();
                 }
             }
         }
@@ -172,5 +175,17 @@ public class PlayerController : MonoBehaviour
         level.toogleUI(true, false);
         level.awakeGates();
 
+    }
+
+    public void DropBleach(){ 
+        var bleachInstance = Instantiate(dropBleach, sprite.transform.position, Quaternion.identity) as GameObject;
+        foreach(Transform bleachBottle in bleachInstance.transform){
+            var rigidBody = bleachBottle.gameObject.GetComponent<Rigidbody>();
+            rigidBody.velocity = direction;
+            var xForce = Random.Range(-1f,1f);
+            var zForce = Random.Range(-1f,1f);
+            rigidBody.AddForce(xForce, 3.0f, zForce, ForceMode.Impulse);
+        }
+        Destroy(bleachInstance, 5f);
     }
 }
