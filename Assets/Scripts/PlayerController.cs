@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float lateralSpeed = 2;
     public float jumpForce = 10;
     public float gravity = 20;
+    public float speedIncrease = 0.5f;
 
     private int desiredLane = 1;
     private int numLanes = 3;
@@ -20,7 +21,6 @@ public class PlayerController : MonoBehaviour
     public LevelManager level;
 
     private float leftPosition;
-
 
     const int DIR_LEFT = -1;
     const int DIR_RIGHT = 1;
@@ -39,6 +39,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (direction.z > 0)
+        {
+            direction.z = forwardSpeed + LevelManager.level * speedIncrease;
+        }
+
         if (controller.isGrounded)
         {
             
@@ -149,7 +154,7 @@ public class PlayerController : MonoBehaviour
         {
             spriteAnimator.SetTrigger("Die");
         }
-        level.toogleUI(false, true);
+        //level.toogleUI(false, true);
 
         direction.z = 0;
         direction.x = 0;
