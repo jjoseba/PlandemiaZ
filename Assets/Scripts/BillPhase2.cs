@@ -11,12 +11,12 @@ public class BillPhase2 : MonoBehaviour
     public Transform gun;
     public Transform shootingPoint;
     public GameObject laser;
+    
     float gunRotationAngle = 10f;
     Quaternion gunStartingAngle;
     float nextShootTime;
     int selectedTarget;
     float selectedAngle;
-    bool isRotating;
     Animator animator;
 
     void Start () {
@@ -46,7 +46,6 @@ public class BillPhase2 : MonoBehaviour
     }
 
     private IEnumerator Aim(){
-        Debug.Log("Aim");
         selectedTarget = Random.Range(-1,2);
         selectedAngle = gunRotationAngle * selectedTarget;
         StartCoroutine(RotateGun(new Vector3(0f, -selectedAngle, 0f), 0.5f));
@@ -87,7 +86,6 @@ public class BillPhase2 : MonoBehaviour
 
     IEnumerator RotateGun(Vector3 angle, float duration)
     {
-        isRotating = true;
         Quaternion newRotation = Quaternion.Euler( angle ) * gunStartingAngle;
         for( float t = 0 ; t < duration ; t+= Time.deltaTime )
         {
@@ -95,7 +93,6 @@ public class BillPhase2 : MonoBehaviour
             yield return null;
         }
         gunStartingAngle = newRotation;
-        isRotating = false;
 
         yield return null;
     }
