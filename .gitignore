@@ -82,3 +82,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# TextMesh Pro files
+/[Aa]ssets/TextMesh Pro*
