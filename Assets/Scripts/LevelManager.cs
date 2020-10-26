@@ -13,7 +13,9 @@ public class LevelManager : MonoBehaviour
     public static int level = 0;
     
     private bool gamePaused = false;
-    
+
+    public LevelLoader levelLoader;
+
     public GameObject menuPanel;
     public GameObject uiPanel;
     public TMP_Text bleachCounter;
@@ -109,13 +111,15 @@ public class LevelManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        SceneManager.LoadScene("Gameplay");
+        levelLoader.FadeAndLoadScene("Gameplay");
+        Time.timeScale = 1;
         bleach = 0;
     }
 
     public void ExitLevel()
     {
-        Application.Quit();
+        levelLoader.FadeAndLoadScene("MainMenu");
+        Time.timeScale = 1;
     }
 
     public void toogleUI(bool visible, bool freezeTime)

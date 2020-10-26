@@ -159,7 +159,7 @@ MonoBehaviour:
   - {fileID: 3141466515561892129, guid: 89f6c7672f59153428271e31082a8add, type: 3}
   tileGatesPrefab: {fileID: 941776425832744153, guid: 7d590f8da0d2151498b0cd591bdab593,
     type: 3}
-  numTileGatesAppearance: 10
+  numTileGatesAppearance: 3
   tileLength: 19.8
   visibleTiles: 5
   currentTile: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.55
+  m_fontSize: 42.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3694,7 +3694,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36.55
+  m_fontSize: 42.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4091,14 +4091,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb50ab6ca4385642a397e91aa406cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 7
+  forwardSpeed: 5
   lateralSpeed: 5.5
   jumpForce: 8
   gravity: 20
+  speedIncrease: 0.1
   laneDistance: 3
   sprite: {fileID: 1189329926}
   level: {fileID: 1850180213}
-  dropBleach: {fileID: 0}
+  dropBleach: {fileID: 8699112809789329237, guid: 460b627465f734b45ae2a1a760bdc25b,
+    type: 3}
 --- !u!136 &1535323956
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4805,7 +4807,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874404412}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cead576175b584c46833383036ce71bf, type: 3}
   m_Name: 
@@ -4839,7 +4841,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874404412}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfd4eb3c7f6fc6a4ca57edef734e52e9, type: 3}
   m_Name: 
