@@ -132,18 +132,22 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Laser")
         {
-            Animator spriteAnimator = sprite.GetComponent<Animator>();
-            if (spriteAnimator != null)
+            LaserHit();
+        }
+    }
+
+    private void LaserHit() {
+        Animator spriteAnimator = sprite.GetComponent<Animator>();
+        if (spriteAnimator != null)
+        {
+            spriteAnimator.SetTrigger("LaserHit");
+            LevelManager.bleach -= 5;
+            if (LevelManager.bleach < 0)
             {
-                spriteAnimator.SetTrigger("LaserHit");
-                LevelManager.bleach -= 5;
-                if (LevelManager.bleach < 0)
-                {
-                    LevelManager.bleach = 0;
-                    Die();
-                } else {
-                    DropBleach();
-                }
+                LevelManager.bleach = 0;
+                Die();
+            } else {
+                DropBleach();
             }
         }
     }
