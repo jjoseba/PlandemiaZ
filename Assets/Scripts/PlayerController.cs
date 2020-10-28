@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
                 LevelManager.bleach = 0;
                 Die();
             } else {
-                DropBleach();
+                //DropBleach();
             }
         }
     }
