@@ -6,10 +6,13 @@ public class GatesLaser : MonoBehaviour
 {
     public Transform origin;
     private Transform selectedTarget;
-    LineRenderer laserLine;
+    private LineRenderer laserLine;
+    private bool alreadyHit = false;
+    private int layerMask;
 
     void Start() {
         laserLine = GetComponent<LineRenderer>();
+        layerMask = LayerMask.GetMask("Miguel");
     }
 
     void Update()
@@ -17,6 +20,18 @@ public class GatesLaser : MonoBehaviour
         if(selectedTarget != null){
             laserLine.SetPosition (0, origin.position);
             laserLine.SetPosition (1, selectedTarget.position);
+
+            if(!alreadyHit){
+                RaycastHit hit;
+                var direction = selectedTarget.position - origin.position;
+                if (Physics.Raycast(origin.position, direction, out hit, Mathf.Infinity, layerMask)) {
+                    if (hit.collider) {
+                        hit.collider.gameObject.SendMessage("LaserHit");
+                        alreadyHit = true;
+                        Destroy(gameObject);
+                    }
+                }
+            }
         }
     }
 
