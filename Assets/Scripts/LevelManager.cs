@@ -111,15 +111,31 @@ public class LevelManager : MonoBehaviour
 
     public void ResetLevel()
     {
-        levelLoader.FadeAndLoadScene("Gameplay");
+        pauseAllSprites();
         Time.timeScale = 1;
+        levelLoader.FadeAndLoadScene("Gameplay");
         bleach = 0;
     }
 
     public void ExitLevel()
     {
-        levelLoader.FadeAndLoadScene("MainMenu");
+        pauseAllSprites();
         Time.timeScale = 1;
+        levelLoader.FadeAndLoadScene("MainMenu");
+        
+    }
+
+    private void pauseAllSprites()
+    {
+        SpriteRenderer[] sprites = Object.FindObjectsOfType<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            Animator anim = sprite.gameObject.GetComponent<Animator>();
+            if (anim != null)
+            {
+                anim.speed = 0;
+            }
+        }
     }
 
     public void toogleUI(bool visible, bool freezeTime)
