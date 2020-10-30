@@ -98,13 +98,19 @@ public class PlayerController : MonoBehaviour
     {
         if (hit.transform.tag == "Obstacles")
         {
+            
             if (hit.gameObject.GetComponent<Rigidbody>() != null)
             {
                 Rigidbody rigid = hit.gameObject.GetComponent<Rigidbody>();
                 Vector3 hitVector = (hit.transform.position - transform.position).normalized;
                 rigid.AddForce(hitVector * 1200);
             }
-            Die();
+            
+            if (alive)
+            {
+                Die();
+            }
+
         }
 
     }
@@ -144,8 +150,7 @@ public class PlayerController : MonoBehaviour
         if (spriteAnimator != null)
         {
             spriteAnimator.SetTrigger("LaserHit");
-            DropBleach();
-            return;
+            
             level.bleach -= 5;
             if (level.bleach < 0)
             {
@@ -153,7 +158,7 @@ public class PlayerController : MonoBehaviour
                 Die();
             } else {
                 audio.Play("laserOuch", false);
-                
+                DropBleach();
             }
         }
     }

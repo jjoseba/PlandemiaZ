@@ -627,7 +627,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40.05
+  m_fontSize: 40.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3281,7 +3281,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40.05
+  m_fontSize: 40.9
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4602,13 +4602,13 @@ MonoBehaviour:
   startingTile: {fileID: 3970588710296333944, guid: ea5a480dbc61c3f44b10aa938f67420e,
     type: 3}
   tilePrefabs:
-  - {fileID: 2980555863662798299, guid: 1400dd6caad421246b1855a807fcf86b, type: 3}
   - {fileID: 1231862039231237769, guid: 2d6d6ceceeb9dd44c9136fb3452c0346, type: 3}
-  - {fileID: 3141466515561892129, guid: 89f6c7672f59153428271e31082a8add, type: 3}
+  - {fileID: 2980555863662798299, guid: 1400dd6caad421246b1855a807fcf86b, type: 3}
   - {fileID: 8401686166464065437, guid: 60fd106d839047d4c8a87ee231104440, type: 3}
+  - {fileID: 3141466515561892129, guid: 89f6c7672f59153428271e31082a8add, type: 3}
   tileGatesPrefab: {fileID: 941776425832744153, guid: 7d590f8da0d2151498b0cd591bdab593,
     type: 3}
-  numTileGatesAppearance: 2
+  numTileGatesAppearance: 9
   tileLength: 19.8
   visibleTiles: 5
   currentTile: 0
