@@ -9,7 +9,8 @@ public class LevelManager : MonoBehaviour
 {
 
     public static bool gameEnded = false;
-    public static int bleach = 0;
+    public int bleach = 0;
+    public int distance = 0;
     public static int level = 0;
     
     private bool gamePaused = false;
@@ -26,12 +27,21 @@ public class LevelManager : MonoBehaviour
     private Button resumeButton;
     private TMP_Text pauseTitle;
     private TMP_Text gameoverTitle;
+    private TMP_Text resultsText;
+
+    private AudioManager audio;
 
     // Start is called before the first frame update
     void Start()
     {
         gameEnded = false;
         gamePaused = false;
+
+        bleach = 0;
+
+        audio = FindObjectOfType<AudioManager>();
+        audio.Play("normalChase", true);
+
         ResumeGame();
         robotGates = GameObject.Find("BillRobot");
         robotGates.SetActive(false);
@@ -40,6 +50,8 @@ public class LevelManager : MonoBehaviour
         resumeButton = getComponentByName<Button>("ResumeButton");
         pauseTitle = getComponentByName<TMP_Text>("PauseTitle");
         gameoverTitle = getComponentByName<TMP_Text>("GameOverTitle");
+        resultsText = getComponentByName<TMP_Text>("ResultsText");
+
     }
 
     // Update is called once per frame
@@ -72,6 +84,7 @@ public class LevelManager : MonoBehaviour
             pauseTitle.gameObject.SetActive(true);
             gameoverTitle.gameObject.SetActive(false);
 
+            audio.Pause();
             gamePaused = true;
         }
     }
@@ -85,7 +98,7 @@ public class LevelManager : MonoBehaviour
             resumeButton.gameObject.SetActive(false);
             pauseTitle.gameObject.SetActive(false);
             gameoverTitle.gameObject.SetActive(true);
-
+            resultsText.SetText("Has recorrido " + distance + "m");
         }
     }
 
@@ -106,6 +119,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1;
         gamePaused = false;
+        audio.Resume();
         StartCoroutine(FadePanel(true, menuPanel, false));
     }
 
@@ -114,7 +128,6 @@ public class LevelManager : MonoBehaviour
         pauseAllSprites();
         Time.timeScale = 1;
         levelLoader.FadeAndLoadScene("Gameplay");
-        bleach = 0;
     }
 
     public void ExitLevel()
@@ -146,6 +159,7 @@ public class LevelManager : MonoBehaviour
     public void awakeGates()
     {
         robotGates.SetActive(true);
+        audio.Play("billChase", true);
     }
 
     IEnumerator FadePanel(bool fadeAway, GameObject panel, bool freezeTime)

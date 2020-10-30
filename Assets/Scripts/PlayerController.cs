@@ -28,9 +28,11 @@ public class PlayerController : MonoBehaviour
 
     private bool alive;
     private Animator animator;
+    private AudioManager audio;
 
     void Start()
     {
+        audio = FindObjectOfType<AudioManager>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         direction.z = forwardSpeed;
@@ -120,7 +122,7 @@ public class PlayerController : MonoBehaviour
             {
                 spriteAnimator.SetTrigger("Collected");
             }
-            LevelManager.bleach++;
+            level.bleach++;
         }
 
         if (other.gameObject.tag == "GatesStreet")
@@ -128,6 +130,7 @@ public class PlayerController : MonoBehaviour
             direction.z = 0;
             level.toogleUI(false, false);
             animator.SetTrigger("Gates");
+            audio.Play("gatesAlley", false);
         }
 
         if (other.gameObject.tag == "Laser")
@@ -141,13 +144,16 @@ public class PlayerController : MonoBehaviour
         if (spriteAnimator != null)
         {
             spriteAnimator.SetTrigger("LaserHit");
-            LevelManager.bleach -= 5;
-            if (LevelManager.bleach < 0)
+            DropBleach();
+            return;
+            level.bleach -= 5;
+            if (level.bleach < 0)
             {
-                LevelManager.bleach = 0;
+                level.bleach = 0;
                 Die();
             } else {
-                //DropBleach();
+                audio.Play("laserOuch", false);
+                
             }
         }
     }
@@ -155,14 +161,14 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         animator.SetTrigger("Die");
-
         Animator spriteAnimator = sprite.GetComponent<Animator>();
         if (spriteAnimator != null)
         {
             spriteAnimator.SetTrigger("Die");
+            audio.Play("gameOver", true);
         }
         //level.toogleUI(false, true);
-
+        level.distance = (int) transform.position.z / 4;
         direction.z = 0;
         direction.x = 0;
         alive = false;
@@ -183,13 +189,7 @@ public class PlayerController : MonoBehaviour
 
     public void DropBleach(){ 
         var bleachInstance = Instantiate(dropBleach, sprite.transform.position, Quaternion.identity) as GameObject;
-        foreach(Transform bleachBottle in bleachInstance.transform){
-            var rigidBody = bleachBottle.gameObject.GetComponent<Rigidbody>();
-            rigidBody.velocity = direction;
-            var xForce = Random.Range(-1f,1f);
-            var zForce = Random.Range(-1f,1f);
-            rigidBody.AddForce(xForce, 3.0f, zForce, ForceMode.Impulse);
-        }
-        Destroy(bleachInstance, 5f);
+        // we remove the bleach prefab after the animation is completed
+        Destroy(bleachInstance, 1.3f);
     }
 }
