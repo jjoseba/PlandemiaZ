@@ -11,6 +11,7 @@ TagManager:
   - CenterTarget
   - LeftTarget
   - RightTarget
+  - GatesSecondPhase
   layers:
   - Default
   - TransparentFX

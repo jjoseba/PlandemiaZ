@@ -159,6 +159,8 @@ MonoBehaviour:
   - {fileID: 3141466515561892129, guid: 89f6c7672f59153428271e31082a8add, type: 3}
   tileGatesPrefab: {fileID: 941776425832744153, guid: 7d590f8da0d2151498b0cd591bdab593,
     type: 3}
+  tileGatesSecondPhasePrefab: {fileID: 3970588710296333944, guid: 589c8d136660270409eab1d6c5278e8e,
+    type: 3}
   numTileGatesAppearance: 3
   tileLength: 19.8
   visibleTiles: 5
@@ -4579,6 +4581,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741737084}
   m_CullTransparentMesh: 0
+--- !u!1 &1756215976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1756215978}
+  - component: {fileID: 1756215977}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1756215977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756215976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 235c5e0efdc9c78449ae51b5e0d94091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: normalChase
+    clip: {fileID: 8300000, guid: bec3665222711d64cb7584e0ead76feb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: billChase
+    clip: {fileID: 8300000, guid: a8b5601de24f81e4a94d1e7c1b7a46dc, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: gameOver
+    clip: {fileID: 8300000, guid: cc8d63681f84b57439ad931ac07e0cbe, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: gatesAlley
+    clip: {fileID: 8300000, guid: aab0479eed458984186ea5e436dd3504, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: laserShot
+    clip: {fileID: 8300000, guid: 6ab4ad73139939045be513049c4cd5e9, type: 3}
+    volume: 0.394
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: laserOuch
+    clip: {fileID: 8300000, guid: ed9bb9c547a19d3448811b848494d348, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+--- !u!4 &1756215978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756215976}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 574.658, y: 261.96146, z: -399.875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1785235322
 GameObject:
   m_ObjectHideFlags: 0
@@ -4743,6 +4832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2bf6a1dee66bf49b6146f610c091e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bleach: 0
+  distance: 0
+  levelLoader: {fileID: 0}
   menuPanel: {fileID: 97280816}
   uiPanel: {fileID: 1108040139}
   bleachCounter: {fileID: 1258807159}
@@ -5009,7 +5101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}

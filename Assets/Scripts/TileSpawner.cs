@@ -10,6 +10,7 @@ public class TileSpawner : MonoBehaviour
     public GameObject[] tilePrefabs;
 
     public GameObject tileGatesPrefab;
+    public GameObject tileGatesSecondPhasePrefab;
     public int numTileGatesAppearance = 6;
     public static int startingTiles = 2;
 
@@ -45,6 +46,7 @@ public class TileSpawner : MonoBehaviour
         if (currentTile < startingTiles) instance = startingTile;
         // If we are in the Gates tile number, we instantiate it instead
         if (currentTile == numTileGatesAppearance) instance = tileGatesPrefab;
+        if (currentTile == numTileGatesAppearance * 2) instance = tileGatesSecondPhasePrefab;
 
             GameObject tile = Instantiate(instance, 
                 transform.forward * currentTile * tileLength, transform.rotation);
