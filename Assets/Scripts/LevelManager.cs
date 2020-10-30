@@ -162,6 +162,15 @@ public class LevelManager : MonoBehaviour
         audio.Play("billChase", true);
     }
 
+    public void stopGatesFirstPhase(){
+        robotGates.GetComponent<Bill>().enabled = false;
+    }
+
+    public void startGatesSecondPhase(){
+        robotGates.GetComponent<Bill>().enabled = true;
+        robotGates.GetComponent<BillPhase2>().enabled = true;
+    }
+
     IEnumerator FadePanel(bool fadeAway, GameObject panel, bool freezeTime)
     {
 

@@ -27,8 +27,11 @@ public class PlayerController : MonoBehaviour
     const int DIR_RIGHT = 1;
 
     private bool alive;
+    private bool canMove;
     private Animator animator;
     private AudioManager audio;
+
+    private bool startGatesSecondPhase;
 
     void Start()
     {
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
         direction.z = forwardSpeed;
         leftPosition = transform.position.x - laneDistance * Mathf.FloorToInt(numLanes/2);
         alive = true;
+        canMove = true;
     }
 
     private void Update()
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded)
         {
             
-            if (alive && (Input.GetKeyDown(KeyCode.UpArrow) || SwipeController.swipeUp)) { Jump(); }
+            if (alive && canMove && (Input.GetKeyDown(KeyCode.UpArrow) || SwipeController.swipeUp)) { Jump(); }
         }
         else
         {
@@ -59,8 +63,8 @@ public class PlayerController : MonoBehaviour
 
         if (alive)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || SwipeController.swipeRight) { ChangeLane(DIR_LEFT); }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) || SwipeController.swipeLeft) { ChangeLane(DIR_RIGHT); }
+            if (canMove && Input.GetKeyDown(KeyCode.RightArrow) || SwipeController.swipeRight) { ChangeLane(DIR_LEFT); }
+            if (canMove && Input.GetKeyDown(KeyCode.LeftArrow) || SwipeController.swipeLeft) { ChangeLane(DIR_RIGHT); }
             float targetPosition = leftPosition + desiredLane * laneDistance;
             if ((direction.x > 0 && targetPosition < transform.position.x)
                 || (direction.x < 0 && targetPosition > transform.position.x))
@@ -69,7 +73,17 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(targetPosition, transform.position.y, transform.position.z);
             }
         }
-        
+
+        if(startGatesSecondPhase && desiredLane == 1){
+            // Trigger the animation when the player is in the middle lane.
+            // This is to prevent the animation to point the camera to a different place
+            canMove = false;
+            startGatesSecondPhase = false;
+            animator.SetTrigger("GatesSecondPhase");
+            direction.z = 0;
+            level.toogleUI(false, false);
+            level.stopGatesFirstPhase();
+        } 
         
     }
 
@@ -133,6 +147,10 @@ public class PlayerController : MonoBehaviour
             audio.Play("gatesAlley", false);
         }
 
+        if(other.gameObject.tag == "GatesSecondPhase"){
+            startGatesSecondPhase = true;
+        }
+
         if (other.gameObject.tag == "Laser")
         {
             LaserHit();
@@ -184,7 +202,13 @@ public class PlayerController : MonoBehaviour
         direction.z = forwardSpeed;
         level.toogleUI(true, false);
         level.awakeGates();
+    }
 
+    public void onGatesSecondPhaseAnimationEnd(){
+        direction.z = forwardSpeed;
+        level.toogleUI(true, false);
+        level.startGatesSecondPhase();
+        canMove = true;
     }
 
     public void DropBleach(){ 
