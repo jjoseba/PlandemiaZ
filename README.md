@@ -1,13 +1,15 @@
 # PlandemiaZ
-Minijuego en Unity sobre conspiranoicos y zombies
+Minijuego en Unity sobre conspiranoicos y zombies, desarrollado en homenaje al 10º aniversario de la Marcha Zombie de Alcalá, que no pudo realizarse por la pandemia.
 
+Puedes descargarlo desde itch.io:
+
+<iframe frameborder="0" src="https://itch.io/embed/800967?bg_color=050505&amp;fg_color=faf9f9&amp;link_color=ea3545&amp;border_color=333333" width="552" height="167"><a href="https://jjoseba.itch.io/plandemia-z">Plandemia Z by Anarres</a></iframe>
 
 ## Licencia
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  [![License: CC BY 4.0](https://licensebuttons.net/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
 PlandemiaZ está publicado bajo una licencia GPLv3. Por favor, lee la licencia incluída en el repositorio. En esta casa respetamos y seguimos los principios del software libre. 
-
 
 	PlandemiaZ is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
