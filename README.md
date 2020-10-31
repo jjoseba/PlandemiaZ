@@ -3,22 +3,14 @@ Minijuego en Unity sobre conspiranoicos y zombies, desarrollado en homenaje al 1
 
 Puedes descargarlo desde itch.io:
 
-<iframe frameborder="0" src="https://itch.io/embed/800967?bg_color=050505&amp;fg_color=faf9f9&amp;link_color=ea3545&amp;border_color=333333" width="552" height="167"><a href="https://jjoseba.itch.io/plandemia-z">Plandemia Z by Anarres</a></iframe>
+[![itch.io Badge](https://github.com/jjoseba/PlandemiaZ/blob/main/Icon/itchio_banner.png)](https://jjoseba.itch.io/plandemia-z)
 
 ## Créditos
 
-#### Programación
-* [Joseba S.](https://github.com/jjoseba/)
-* [AlbertoMoreta](https://github.com/AlbertoMoreta)
-
-#### Música
-* [Mario Misas](http://www.mariomisas.es/)
-
-#### Gráficos 2/3D
-* [Joseba S.](https://github.com/jjoseba/)
-
-#### Build MacOS
-* [Roberto Román](https://apps.apple.com/do/developer/roberto-roman-moran/id728359529)
+* **Programación**: [Joseba S.](https://github.com/jjoseba/), [AlbertoMoreta](https://github.com/AlbertoMoreta)
+* **Música**: [Mario Misas](http://www.mariomisas.es/)
+* **Gráficos 2/3D**: [Joseba S.](https://github.com/jjoseba/)
+* **Build MacOS**: [Roberto Román](https://apps.apple.com/do/developer/roberto-roman-moran/id728359529)
 
 ## Licencia
 
