@@ -28,11 +28,11 @@ public class PlayerController : MonoBehaviour
 
     private bool alive;
     private Animator animator;
-    private AudioManager audio;
+    private AudioManager audioManager;
 
     void Start()
     {
-        audio = FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         direction.z = forwardSpeed;
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "Bleach")
         {
-            //hit.gameObject.SetActive(false);
+            audioManager.Play("bleachCollected", false);
             Animator spriteAnimator = other.gameObject.GetComponent<Animator>();
             if (spriteAnimator != null)
             {
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
             direction.z = 0;
             level.toogleUI(false, false);
             animator.SetTrigger("Gates");
-            audio.Play("gatesAlley", false);
+            audioManager.Play("gatesAlley", false);
         }
 
         if (other.gameObject.tag == "Laser")
@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 level.bleach = 0;
                 Die();
             } else {
-                audio.Play("laserOuch", false);
+                audioManager.Play("laserOuch", false);
                 DropBleach();
             }
         }
@@ -170,7 +170,7 @@ public class PlayerController : MonoBehaviour
         if (spriteAnimator != null)
         {
             spriteAnimator.SetTrigger("Die");
-            audio.Play("gameOver", true);
+            audioManager.Play("gameOver", true);
         }
         //level.toogleUI(false, true);
         level.distance = (int) transform.position.z / 4;

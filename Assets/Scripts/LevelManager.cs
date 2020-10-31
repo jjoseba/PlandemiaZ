@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     private TMP_Text gameoverTitle;
     private TMP_Text resultsText;
 
-    private AudioManager audio;
+    private AudioManager audioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -38,9 +38,7 @@ public class LevelManager : MonoBehaviour
         gamePaused = false;
 
         bleach = 0;
-
-        audio = FindObjectOfType<AudioManager>();
-        audio.Play("normalChase", true);
+        audioManager = FindObjectOfType<AudioManager>();
 
         ResumeGame();
         robotGates = GameObject.Find("BillRobot");
@@ -51,6 +49,8 @@ public class LevelManager : MonoBehaviour
         pauseTitle = getComponentByName<TMP_Text>("PauseTitle");
         gameoverTitle = getComponentByName<TMP_Text>("GameOverTitle");
         resultsText = getComponentByName<TMP_Text>("ResultsText");
+
+        audioManager.Play("normalChase", true);
 
     }
 
@@ -84,7 +84,7 @@ public class LevelManager : MonoBehaviour
             pauseTitle.gameObject.SetActive(true);
             gameoverTitle.gameObject.SetActive(false);
 
-            audio.Pause();
+            audioManager.Pause();
             gamePaused = true;
         }
     }
@@ -119,7 +119,7 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1;
         gamePaused = false;
-        audio.Resume();
+        audioManager.Resume();
         StartCoroutine(FadePanel(true, menuPanel, false));
     }
 
@@ -159,7 +159,7 @@ public class LevelManager : MonoBehaviour
     public void awakeGates()
     {
         robotGates.SetActive(true);
-        audio.Play("billChase", true);
+        audioManager.Play("billChase", true);
     }
 
     IEnumerator FadePanel(bool fadeAway, GameObject panel, bool freezeTime)

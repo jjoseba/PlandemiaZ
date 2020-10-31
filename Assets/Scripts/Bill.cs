@@ -11,11 +11,11 @@ public class Bill : MonoBehaviour
 
     private bool laserActive = false;
     private Animator animator;
-    private AudioManager audio;
+    private AudioManager audioManager;
 
     void Start()
     {
-        audio = FindObjectOfType<AudioManager>();
+        audioManager = FindObjectOfType<AudioManager>();
         laser.transform.localPosition = Vector3.zero;
         laser.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
@@ -30,7 +30,7 @@ public class Bill : MonoBehaviour
             if (laser.transform.localPosition.x > laserRenew)
             {
                 animator.SetTrigger("Shoot");
-                audio.Play("laserShot", false);
+                audioManager.Play("laserShot", false);
                 laser.transform.localPosition = Vector3.zero;
             }
         }
@@ -41,7 +41,7 @@ public class Bill : MonoBehaviour
     {
         laserActive = true;
         animator.SetTrigger("Shoot");
-        audio.Play("laserShot", false);
+        audioManager.Play("laserShot", false);
         laser.gameObject.SetActive(true);
     }
 }

@@ -5,24 +5,12 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
 
-	public static AudioManager instance;
-
-	public AudioMixerGroup mixerGroup;
-
 	public Sound[] sounds;
 	private Sound currentSound;
 
 	void Awake()
 	{
-		if (instance != null)
-		{
-			Destroy(gameObject);
-		}
-		else
-		{
-			instance = this;
-			DontDestroyOnLoad(gameObject);
-		}
+		Debug.Log("Awaken, my love!");
 
 		foreach (Sound s in sounds)
 		{
@@ -31,7 +19,10 @@ public class AudioManager : MonoBehaviour
 			s.source.clip = s.clip;
 			s.source.loop = s.loop;
 
-			s.source.outputAudioMixerGroup = mixerGroup;
+			if (currentSound != null && currentSound.name == s.name)
+            {
+				currentSound = s;
+            }
 		}
 	}
 
@@ -53,6 +44,15 @@ public class AudioManager : MonoBehaviour
 		s.source.Play();
 		
 	}
+
+	public void ClearSound()
+    {
+		if (currentSound != null)
+        {
+			currentSound.source.Stop();
+			currentSound = null;
+        }
+    }
 
 	public void Pause()
     {
