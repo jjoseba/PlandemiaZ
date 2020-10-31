@@ -5,6 +5,21 @@ Puedes descargarlo desde itch.io:
 
 <iframe frameborder="0" src="https://itch.io/embed/800967?bg_color=050505&amp;fg_color=faf9f9&amp;link_color=ea3545&amp;border_color=333333" width="552" height="167"><a href="https://jjoseba.itch.io/plandemia-z">Plandemia Z by Anarres</a></iframe>
 
+## Créditos
+
+#### Programación
+* [Joseba S.](https://github.com/jjoseba/)
+* [AlbertoMoreta](https://github.com/AlbertoMoreta)
+
+#### Música
+* [Mario Misas](http://www.mariomisas.es/)
+
+#### Gráficos 2/3D
+* [Joseba S.](https://github.com/jjoseba/)
+
+#### Build MacOS
+* [Roberto Román](https://apps.apple.com/do/developer/roberto-roman-moran/id728359529)
+
 ## Licencia
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)  [![License: CC BY 4.0](https://licensebuttons.net/l/by-sa/4.0/80x15.png)](http://creativecommons.org/licenses/by-sa/4.0/)
